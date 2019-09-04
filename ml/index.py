@@ -10,6 +10,14 @@ import keras
     Take data feedstream from pipeline on web frontend and then run network
 '''
 
+# Function for loading verified data
+def load_ver (filename):
+    return pd.read_csv('../data/' + filename)
+
+# Function for translating user data music stream into Pandas dataframe
+def parse_user (filename):
+    return pd.read_csv('../gen/' + filename)
+
 # Load training data
 
 # Train Model
