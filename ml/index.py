@@ -2,6 +2,11 @@
 import pandas as pd
 import numpy as np
 
+from flask import Flask
+
+# Initialize flask server pipeline
+app = Flask(__name__)
+
 import json
 
 import keras
@@ -34,7 +39,7 @@ class Request(object):
 
 # Load training data
 
-
+print("Hello World!")
 
 # Train Model
 
