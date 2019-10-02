@@ -24,9 +24,9 @@ import keras
 class Request(object):
 
     def __init__(self, ver_file, user_file, json_req):
-        self.ver_file = load_ver(ver_file)
-        self.user_file = load_user(user_file)
-        self.parse_request = parse_requests(json_req)
+        self.ver_file = self.load_ver(ver_file)
+        self.user_file = self.load_user(user_file)
+        self.parse_request = self.parse_requests(json_req)
 
     def load_ver (self, filename):
         # Function for loading verified data
