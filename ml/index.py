@@ -10,6 +10,7 @@ app = Flask(__name__)
 import json
 
 import keras
+import tensorflow as tf
 
 ''' 
     Take in a csv of data points on supposed note values, and then actual performance values.
@@ -39,6 +40,23 @@ class Request(object):
     def parse_requests (self, json_req):
         # Function that parses the json request that the user sends via the web/Arduino interface
         return json.loads(json_req)
+
+    def export (self):
+        # Function that returns all of the read data in a tensor data structure
+        
+        export_vector = [0] * len(self.ver_file.index)
+        count = 0
+
+        for ver in self.ver_file:
+            # Compute the user and prediction variance, assumption is that the user and prediction pandas dataframes will have the same number of rows
+            export_vector[count] = ver - (self.user_file[count])
+            count += 1
+
+        diff_vector = np.asarray(export_vector, np.float32)
+        export_tensor = tf.convert_to_tensor((np.concatenate(diff_vector, self.ver_file, self.user_file)), dtype=tf.float32)
+
+        return export_tensor
+
 
 # Load training data
 
